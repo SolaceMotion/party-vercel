@@ -10,7 +10,7 @@ const orderBy = (countries: any[], direction?: string) => {
   return countries;
 };
 
-const setValueAndDirection = value => {};
+/* const setValueAndDirection = value => {}; */
 
 const CountriesTable = ({ parties }: { parties: Array<any> }) => {
   /*   const orderedCountries = orderBy(countries, 'asc'); */
