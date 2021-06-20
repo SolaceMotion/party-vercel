@@ -13,7 +13,7 @@ const Party = ({ partyProp }: { partyProp: any[] }) => {
   const [party] = partyProp;
   return (
     <Layout>
-      <CountriesTableId data={party} style={{ display: 'flex' }} />
+      <CountriesTableId data={party} /* style={{ display: 'flex' }} */ />
     </Layout>
   );
 };
