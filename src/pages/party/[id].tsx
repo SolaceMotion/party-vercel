@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout/layout';
 import CountriesTableId from '../../components/countries-table/countries-table-id';
 
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 
 const getParty = async (name: string) => {
   const res = await fetch(
@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }: { [params: string]: any }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }: { [params: string]: any }) => {
   const partyProp = await getParty(params.id);
   return {
     props: {
