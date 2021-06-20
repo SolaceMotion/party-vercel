@@ -3,6 +3,8 @@ import styles from '../styles/Home.module.css';
 import SearchInput from '../components/search-input/search-input';
 import CountriesTable from '../components/countries-table/countries-table';
 
+import { GetServerSideProps } from 'next';
+
 export default function Home({ data }: { data: any }) {
   console.log;
   return (
@@ -13,7 +15,7 @@ export default function Home({ data }: { data: any }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch('https://agile-lowlands-27742.herokuapp.com/api');
   const data = await res.json();
   return {

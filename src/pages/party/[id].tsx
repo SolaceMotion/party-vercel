@@ -1,6 +1,8 @@
 import Layout from '../../components/Layout/layout';
 import CountriesTableId from '../../components/countries-table/countries-table-id';
 
+import { GetStaticPaths, GetStaticProps } from 'next';
+
 const getParty = async (name: string) => {
   const res = await fetch(
     `https://agile-lowlands-27742.herokuapp.com/api/search?party=${encodeURIComponent(name)}`
@@ -20,7 +22,7 @@ const Party = ({ partyProp }: { partyProp: any[] }) => {
 
 export default Party;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('https://agile-lowlands-27742.herokuapp.com/api');
   const data: any[] = await res.json();
 
@@ -37,7 +39,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }: { params: any }) => {
+export const getStaticProps: GetStaticProps = async ({ params }: { [params: string]: any }) => {
   const partyProp = await getParty(params.id);
   return {
     props: {
