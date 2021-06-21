@@ -6,7 +6,6 @@ import CountriesTable from '../components/countries-table/countries-table';
 import { GetServerSideProps } from 'next';
 
 export default function Home({ data }: { data: any }) {
-  console.log;
   return (
     <Layout className={styles.counts}>
       Found {data.length} parties <SearchInput placeholder="Filter by Name or regions served" />

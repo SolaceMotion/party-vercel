@@ -6,7 +6,6 @@ type Data = {
 };
 
 const CountriesTableId = ({ data, ...rest }: { data: Data }) => {
-  console.log(data);
   const { party, members, regions_served, date } = data;
   return (
     <div {...rest}>

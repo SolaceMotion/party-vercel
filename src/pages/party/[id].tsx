@@ -1,18 +1,17 @@
 import Layout from '../../components/Layout/layout';
 import CountriesTableId from '../../components/countries-table/countries-table-id';
 
-import { GetStaticPaths, GetStaticProps } from 'next';
-
 const getParty = async (name: string) => {
   const res = await fetch(
     `https://agile-lowlands-27742.herokuapp.com/api/search?party=${encodeURIComponent(name)}`
   );
-  const data = res.json();
+  const data = await res.json();
   return data;
 };
 
 const Party = ({ partyProp }: { partyProp: any[] }) => {
   const [party] = partyProp;
+
   return (
     <Layout>
       <CountriesTableId data={party} /* style={{ display: 'flex' }} */ />
@@ -22,7 +21,8 @@ const Party = ({ partyProp }: { partyProp: any[] }) => {
 
 export default Party;
 
-export const getStaticPaths: GetStaticPaths = async () => {
+/* Static page generation */
+/* export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch('https://agile-lowlands-27742.herokuapp.com/api');
   const data: any[] = await res.json();
 
@@ -37,10 +37,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths,
     fallback: false,
   };
-};
+}; */
 
-export const getStaticProps: GetStaticProps = async ({ params }: { [params: string]: any }) => {
-  const partyProp = await getParty(params.id);
+export const getServerSideProps = async (context: any) => {
+  const partyProp = await getParty(context.params.id);
   return {
     props: {
       partyProp,
